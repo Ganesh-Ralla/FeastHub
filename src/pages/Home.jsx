@@ -1,8 +1,12 @@
-import React from 'react'
+
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <>
+    <div className=" p-4 md:px-8 lg:px-12">
+      Home
+    </div>
+    </>
   )
 }
 

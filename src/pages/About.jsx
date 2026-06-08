@@ -1,8 +1,12 @@
-import React from 'react'
+
 
 const About = () => {
   return (
-    <div>About</div>
+    <>
+    <div className=" p-4 md:px-8 lg:px-12">
+      About
+    </div>
+    </>
   )
 }
 
