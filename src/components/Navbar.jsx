@@ -9,9 +9,9 @@ const Navbar = ({openAuth,setOpenAuth}) => {
   return (
     <>
       <nav className=' fixed w-full z-10 top-0 '>
-        <div className=' p-4 md:px-8 lg:px-12 bg-blue-400 text-white'>
+        <div className=' p-4 md:px-8 lg:px-12 bg-white'>
           <div className=' flex items-center justify-between '>
-            <Link to='/' className=' font-bold text-2xl md:text-3xl'>FeastHub</Link>
+            <Link to='/' className=' font-bold text-2xl md:text-3xl'>  <span>Feast</span><span className=' text-orange-500'>Hub</span></Link>
             <div className=' md:hidden'>
               <Menu onClick={() => { setMenu(!menu) }} />
             </div>

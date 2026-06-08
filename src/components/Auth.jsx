@@ -5,8 +5,8 @@ const Auth = ({setOpenAuth}) => {
   const [authmode, setAuthMode] = useState('login')
   return (
     <>
-      <div className=' flex justify-center items-center min-h-[80vh] fixed z-10 inset-0 backdrop-blur-xs'>
-        <div className=' border rounded-xl border-gray-200 w-2xs md:w-1/2 lg:w-1/4 px-2 hover:cursor-pointer'>
+      <div className=' flex justify-center items-center min-h-[80vh] fixed z-10 inset-0 backdrop-blur-sm'>
+        <div className=' border rounded-xl border-gray-200 bg-white w-2xs md:w-1/2 lg:w-1/4 p-4 hover:cursor-pointer'>
           <p className=' flex justify-end items-center p-2 ' onClick={()=>{setOpenAuth(false)}}><X /></p>
           {
             authmode === 'login' && (
