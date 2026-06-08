@@ -28,4 +28,4 @@ const Home = ({openAuth,setOpenAuth}) => {
   )
 }
 
-export default Home
+export default Home 
