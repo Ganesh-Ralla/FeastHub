@@ -3,6 +3,7 @@ import TechStack from "../components/TechStack";
 import AboutUs from "../components/AboutUs";
 import Aboutintro from "../components/Aboutintro";
 import Overview from "../components/Overview";
+import { AnimatePresence } from "motion/react"
 
 const About = ({ openAuth, setOpenAuth }) => {
   return (
@@ -14,7 +15,9 @@ const About = ({ openAuth, setOpenAuth }) => {
         <AboutUs />
       </div>
 
-      {openAuth && <Auth setOpenAuth={setOpenAuth} />}
+      <AnimatePresence>
+        {openAuth && <Auth setOpenAuth={setOpenAuth}/>}
+      </AnimatePresence>
     </>
   );
 };

@@ -18,7 +18,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home openAuth={openAuth} setOpenAuth={setOpenAuth} />} />
         <Route path='/about' element={<About openAuth={openAuth} setOpenAuth={setOpenAuth}/>} />
-        <Route path='/cart' element={<Cart/>} />
+        <Route path='/cart' element={<Cart openAuth={openAuth} setOpenAuth={setOpenAuth}/>} />
       </Routes>
       <Footer/>
       <ToastContainer/>
