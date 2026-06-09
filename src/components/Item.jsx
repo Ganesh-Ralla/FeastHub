@@ -6,7 +6,11 @@ import { easeInOut, motion } from 'motion/react'
 
 const Item = ({ setOpenModel }) => {
   const addToCart = () => {
-    toast.success("Added to cart..")
+    toast.success("Added to cart..",{
+      position:'top-center',
+      autoClose:3000,
+      hideProgressBar:true
+    })
   }
   return (
     <>
