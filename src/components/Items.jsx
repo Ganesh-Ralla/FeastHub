@@ -17,7 +17,7 @@ const Items = () => {
                     {
                         items.map((item, id) => {
                             return (
-                                <div className=' border border-gray-200 rounded-xl'>
+                                <div key={id}  className=' border border-gray-200 rounded-xl'>
                                     <img src={item.image} alt="" className=' rounded-t-xl' />
                                     <div className=' px-2'>
                                         <p className=' font-bold'>{item.item}</p>

@@ -3,6 +3,7 @@ import Main from "../components/Main"
 import banner from '../assets/banner.png'
 import discount1 from '../assets/discount1.png'
 import Items from "../components/Items"
+import { AnimatePresence } from "motion/react"
 
 const Home = ({openAuth,setOpenAuth}) => {
   return (
@@ -22,7 +23,9 @@ const Home = ({openAuth,setOpenAuth}) => {
         <p className=" my-2 font-bold md:text-2xl">Popular Items</p>
         <Items/>
       </div>
-      {openAuth && <Auth setOpenAuth={setOpenAuth}/>}
+      <AnimatePresence>
+        {openAuth && <Auth setOpenAuth={setOpenAuth}/>}
+      </AnimatePresence>
     </div>
     </>
   )
