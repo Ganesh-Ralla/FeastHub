@@ -7,6 +7,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import About from './pages/About'
 import { useState } from 'react'
+import Cart from './pages/Cart'
 
 function App() {
   const [openAuth,setOpenAuth] = useState(false)
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home openAuth={openAuth} setOpenAuth={setOpenAuth} />} />
         <Route path='/about' element={<About openAuth={openAuth} setOpenAuth={setOpenAuth}/>} />
+        <Route path='/cart' element={<Cart/>} />
       </Routes>
       <Footer/>
       <ToastContainer/>

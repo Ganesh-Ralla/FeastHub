@@ -35,6 +35,7 @@ const Navbar = ({ openAuth, setOpenAuth }) => {
                 <span><Search color='gray' /> </span>
               </div>
               <Link to='/about' >About</Link>
+              <Link to='/cart' >Cart</Link>
               <Link ><UserCircle onClick={() => { setOpenAuth(true) }} /></Link>
             </div>
           </div>
@@ -44,6 +45,7 @@ const Navbar = ({ openAuth, setOpenAuth }) => {
           menu && (
             <div className=' flex flex-col justify-around gap-2 p-4 bg-blue-200'>
               <Link to='/about' >About</Link>
+              <Link to='/cart' >Cart</Link>
               <Link><UserCircle onClick={() => { setOpenAuth(true) }} /></Link>
             </div>
           )
