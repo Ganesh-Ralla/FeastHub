@@ -3,7 +3,7 @@ import heroFood from "../assets/about.jpg";
 const Aboutintro = () => {
   return (
     <section
-      className="h-[500px] overflow-hidden bg-cover bg-center flex items-center"
+      className="h-125 mt-16 overflow-hidden bg-cover bg-center flex items-center"
       style={{ backgroundImage: `url(${heroFood})` }}
     >
       <div className="bg-black/40 w-full h-full flex items-center">

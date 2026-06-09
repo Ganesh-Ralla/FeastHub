@@ -10,15 +10,16 @@ import { useState } from 'react'
 import Cart from './pages/Cart'
 
 function App() {
-  const [openAuth,setOpenAuth] = useState(false)
+  const [openModel,setOpenModel] = useState(false)
+  const [model,setModel] = useState('')
   return (
     <>
     <BrowserRouter>
-      <Navbar openAuth={openAuth} setOpenAuth={setOpenAuth}/>
+      <Navbar openModel={openModel} setOpenModel={setOpenModel} setModel={setModel} />
       <Routes>
-        <Route path='/' element={<Home openAuth={openAuth} setOpenAuth={setOpenAuth} />} />
-        <Route path='/about' element={<About openAuth={openAuth} setOpenAuth={setOpenAuth}/>} />
-        <Route path='/cart' element={<Cart openAuth={openAuth} setOpenAuth={setOpenAuth}/>} />
+        <Route path='/' element={<Home openModel={openModel} setOpenModel={setOpenModel} model={model} setModel={setModel} />} />
+        <Route path='/about' element={<About openModel={openModel} setOpenModel={setOpenModel} />} />
+        <Route path='/cart' element={<Cart openModel={openModel} setOpenModel={setOpenModel}/>} />
       </Routes>
       <Footer/>
       <ToastContainer/>

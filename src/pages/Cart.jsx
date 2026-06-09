@@ -2,7 +2,7 @@ import React from 'react'
 import { AnimatePresence } from "motion/react"
 import Auth from '../components/Auth'
 
-const Cart = ({ openAuth, setOpenAuth }) => {
+const Cart = ({ openModel, setOpenModel }) => {
     return (
         <>
             <div className=' p-4 md:px-8 lg:px-12 mt-16'>
@@ -38,7 +38,7 @@ const Cart = ({ openAuth, setOpenAuth }) => {
             </div>
 
             <AnimatePresence>
-                {openAuth && <Auth setOpenAuth={setOpenAuth} />}
+                {openModel && <Auth setOpenModel={setOpenModel} />}
             </AnimatePresence>
         </>
     )

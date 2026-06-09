@@ -2,7 +2,7 @@ import { Menu, Search, UserCircle } from 'lucide-react'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const Navbar = ({ openAuth, setOpenAuth }) => {
+const Navbar = ({ openModel,setOpenModel,setModel}) => {
 
   const [menu, setMenu] = useState(false)
   const [opensearch, setOpenSearch] = useState(false)
@@ -36,7 +36,7 @@ const Navbar = ({ openAuth, setOpenAuth }) => {
               </div>
               <Link to='/about' >About</Link>
               <Link to='/cart' >Cart</Link>
-              <Link ><UserCircle onClick={() => { setOpenAuth(true) }} /></Link>
+              <Link ><UserCircle onClick={() => { setOpenModel(true),setModel('user') }} /></Link>
             </div>
           </div>
 
@@ -46,7 +46,7 @@ const Navbar = ({ openAuth, setOpenAuth }) => {
             <div className=' flex flex-col justify-around gap-2 p-4 bg-blue-200'>
               <Link to='/about' >About</Link>
               <Link to='/cart' >Cart</Link>
-              <Link><UserCircle onClick={() => { setOpenAuth(true) }} /></Link>
+              <Link><UserCircle onClick={() => { setOpenModel(true),setModel('user') }} /></Link>
             </div>
           )
         }

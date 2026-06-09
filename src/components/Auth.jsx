@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import {AnimatePresence, easeInOut, motion } from 'motion/react'
 
 
-const Auth = ({ setOpenAuth }) => {
+const Auth = ({ setOpenModel }) => {
   const [authmode, setAuthMode] = useState('login')
   return (
     <>
@@ -11,7 +11,7 @@ const Auth = ({ setOpenAuth }) => {
         <div className=' flex justify-center items-center min-h-[80vh] fixed z-10 inset-0 backdrop-blur-sm'>
           <motion.div initial={{y:-20,opacity:0}} animate={{y:0,opacity:1}} transition={{duration:0.4,ease:easeInOut}} exit={{y:-20, opacity:0}} 
                       className=' border rounded-xl border-gray-200 bg-white w-2xs md:w-1/2 lg:w-1/4 p-4 hover:cursor-pointer'>
-            <p className=' flex justify-end items-center p-2 ' onClick={() => { setOpenAuth(false) }}><X /></p>
+            <p className=' flex justify-end items-center p-2 ' onClick={() => { setOpenModel(false) }}><X /></p>
             {
               authmode === 'login' && (
                 <div className=' text-center p-2'>

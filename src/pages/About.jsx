@@ -5,18 +5,19 @@ import Aboutintro from "../components/Aboutintro";
 import Overview from "../components/Overview";
 import { AnimatePresence } from "motion/react"
 
-const About = ({ openAuth, setOpenAuth }) => {
+const About = ({ openModel, setOpenModel }) => {
   return (
     <>
-      <div className="mt-16 p-4 md:px-8 lg:px-12">
-        <Aboutintro />
+      <Aboutintro />
+      <div className=" p-4 md:px-8 lg:px-12">
+
         <Overview />
         <TechStack />
         <AboutUs />
       </div>
 
       <AnimatePresence>
-        {openAuth && <Auth setOpenAuth={setOpenAuth}/>}
+        {openModel && <Auth setOpenModel={setOpenModel} />}
       </AnimatePresence>
     </>
   );

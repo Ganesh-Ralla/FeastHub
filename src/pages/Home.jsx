@@ -4,8 +4,9 @@ import banner from '../assets/banner.png'
 import discount1 from '../assets/discount1.png'
 import Items from "../components/Items"
 import { AnimatePresence } from "motion/react"
+import Item from "../components/Item"
 
-const Home = ({openAuth,setOpenAuth}) => {
+const Home = ({openModel,setOpenModel,model,setModel}) => {
   return (
     <>
     <div className=" mt-12 lg:mt-0 relative">
@@ -21,10 +22,14 @@ const Home = ({openAuth,setOpenAuth}) => {
       <img src={discount1} className=" rounded-xl lg:hidden" alt="" />
       <div>
         <p className=" my-2 font-bold md:text-2xl">Popular Items</p>
-        <Items/>
+        <Items setModel={setModel} setOpenModel={setOpenModel} />
       </div>
       <AnimatePresence>
-        {openAuth && <Auth setOpenAuth={setOpenAuth}/>}
+        {openModel && model === 'user' && <Auth setOpenModel={setOpenModel}/>}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        { openModel && model === 'item' && <Item setOpenModel={setOpenModel}/> }
       </AnimatePresence>
     </div>
     </>
