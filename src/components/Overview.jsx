@@ -12,9 +12,10 @@ const Overview = () => {
           </h2>
 
           <p className="text-gray-600 text-lg leading-8 mb-6">
-            FeastHub is a modern food ordering and restaurant discovery
-            platform designed to help users explore restaurants, discover
-            cuisines, and find their favorite meals with ease.
+            FeastHub is a modern restaurant ordering platform designed to
+            provide customers with a smooth and convenient food ordering
+            experience. Users can explore our menu, select their favorite
+            dishes, place orders, and enjoy delicious meals with ease.
           </p>
 
           <h3 className="text-2xl font-semibold text-gray-800 mb-4">
@@ -22,9 +23,9 @@ const Overview = () => {
           </h3>
 
           <p className="text-gray-600 leading-8 mb-6">
-            Our mission is to make food discovery and ordering simple,
-            convenient, and enjoyable by providing a seamless digital
-            experience for food lovers.
+            Our mission is to simplify food ordering by providing a fast,
+            user-friendly, and reliable digital platform that connects
+            customers directly with our restaurant.
           </p>
 
           <h3 className="text-2xl font-semibold text-gray-800 mb-4">
@@ -32,22 +33,22 @@ const Overview = () => {
           </h3>
 
           <p className="text-gray-600 leading-8 mb-6">
-            FeastHub brings restaurants, menus, and food choices together
-            in one place, helping users quickly find what they are looking
-            for through a clean and user-friendly interface.
+            FeastHub focuses on delivering a seamless customer experience
+            through a clean interface, easy navigation, and efficient
+            ordering process.
           </p>
 
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+          <h3 className="text-3xl font-semibold text-gray-800 mb-4">
             What You'll Find Here
           </h3>
 
-          <ul className="list-disc pl-6 text-gray-600 leading-8">
-            <li>Restaurant Discovery</li>
-            <li>Menu Browsing</li>
-            <li>Food Categories</li>
-            <li>User Authentication</li>
-            <li>Responsive Design</li>
-            <li>Modern User Experience</li>
+          <ul className="space-y-3 text-gray-700 text-lg">
+            <li>🍔 Complete Restaurant Menu</li>
+            <li>🛒 Easy Food Ordering</li>
+            <li>⭐ Featured & Popular Dishes</li>
+            <li>👤 Secure User Authentication</li>
+            <li>📱 Fully Responsive Design</li>
+            <li>⚡ Fast and Smooth User Experience</li>
           </ul>
         </div>
 
@@ -56,7 +57,7 @@ const Overview = () => {
           <img
             src={heroFood}
             alt="Food"
-            className="w-full h-[450px] object-cover rounded-2xl shadow-lg"
+            className="w-full h-112.5 object-cover rounded-2xl shadow-lg"
           />
         </div>
 
