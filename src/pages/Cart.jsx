@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { AnimatePresence } from "motion/react"
 import Auth from '../components/Auth'
 import biryani from '../assets/Biryani.png'
@@ -6,11 +6,14 @@ import { Trash2 } from 'lucide-react'
 import { toast } from 'react-toastify'
 const Cart = ({ openModel, setOpenModel }) => {
 
-    const placeOrder=()=>{
-        toast.success("Order placed. Will be delivered soon..",{
-            position:'top-center',
-            autoClose:3000,
-            hideProgressBar:true
+    const [count,setCount] = useState(1)
+    const [price,setPrice] = useState(370)
+
+    const placeOrder = () => {
+        toast.success("Order placed. Will be delivered soon..", {
+            position: 'top-center',
+            autoClose: 3000,
+            hideProgressBar: true
         })
     }
     return (
@@ -27,29 +30,29 @@ const Cart = ({ openModel, setOpenModel }) => {
                                 <img src={biryani} alt="" className=' h-20 rounded-xl' />
                                 <div>
                                     <p>Chicken Biryani</p>
-                                    <p>₹370</p>
+                                    <p>₹{price}</p>
                                 </div>
                             </div>
                             <div className=' text-xl border border-gray-200 rounded-xl '>
-                                <button className='hover:cursor-pointer p-2'>-</button>
-                                <button className=' font-bold px-4'>1</button>
-                                <button className='hover:cursor-pointer p-2'>+</button>
+                                <button onClick={()=>{ if(count!=1){setCount(count-1)}}} className='hover:cursor-pointer p-2'>-</button>
+                                <button className=' font-bold px-4'> {count} </button>
+                                <button onClick={()=>{setCount(count+1)}} className='hover:cursor-pointer p-2'>+</button>
                             </div>
                             <div className=' flex items-center gap-2'>
-                                <p>₹370</p>
-                                <Trash2 size={18}/>
+                                <p>₹{count*price}</p>
+                                <Trash2 size={18} />
                             </div>
                         </div>
                     </div>
-                    <div className=' border border-gray-200 rounded-xl p-2 w-1/4'>
-                        <p className=' border-b border-gray-200 text-2xl font-bold'>Order Summary</p>
+                    <div className=' border border-gray-200 rounded-xl p-4 w-md'>
+                        <p className=' border-b border-gray-200 text-2xl font-bold my-2'>Order Summary</p>
                         <div>
                             <div className=' border-b border-gray-200'>
-                                <p className=' my-2'>Total Items : 1 </p>
+                                <p className=' my-2'>Total Items : {count} </p>
                                 <p className=' flex items-center justify-between my-2'><span>Delivery :</span> <span className=' font-bold text-green-500'>FREE</span></p>
                             </div>
                             <div className=' my-4'>
-                                <p className=' font-bold flex items-center justify-between'><span>Total Amount :</span> <span>₹370</span></p>
+                                <p className=' font-bold flex items-center justify-between'><span>Total Amount :</span> <span>₹{count*price}</span></p>
                                 <p className='text-sm font-light'>Inclusive of all taxes</p>
                             </div>
                             <button onClick={placeOrder} className='hover:cursor-pointer my-2 rounded-xl bg-green-500 p-2 font-bold text-center text-white w-full'>Proceed to Checkout</button>

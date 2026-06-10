@@ -20,7 +20,7 @@ const Aboutus = () => {
 
           <ul className="space-y-4 text-lg text-gray-700">
             <li>
-              <span className="font-semibold">Ralla Ganesh</span> — Full Stack Developer
+              <span className="font-semibold">Ganesh Ralla</span> — Full Stack Developer
             </li>
 
             <li>

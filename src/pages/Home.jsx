@@ -5,6 +5,7 @@ import discount1 from '../assets/discount1.png'
 import Items from "../components/Items"
 import { AnimatePresence } from "motion/react"
 import Item from "../components/Item"
+import Categories from "../components/Categories"
 
 const Home = ({openModel,setOpenModel,model,setModel}) => {
   return (
@@ -20,10 +21,18 @@ const Home = ({openModel,setOpenModel,model,setModel}) => {
 
     <div className="  p-4 md:px-8 lg:px-12">
       <img src={discount1} className=" rounded-xl lg:hidden" alt="" />
+      
+      <div>
+        <p className=" my-2 font-bold md:text-2xl">Top Categories</p>
+        <Categories/>
+      </div>
+      
       <div>
         <p className=" my-2 font-bold md:text-2xl">Popular Items</p>
         <Items setModel={setModel} setOpenModel={setOpenModel} />
       </div>
+
+      
       <AnimatePresence>
         {openModel && model === 'user' && <Auth setOpenModel={setOpenModel}/>}
       </AnimatePresence>
