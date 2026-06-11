@@ -22,8 +22,8 @@ const Home = ({openModel,setOpenModel,model,setModel}) => {
     <div className="  p-4 md:px-8 lg:px-12">
       <img src={discount1} className=" rounded-xl lg:hidden" alt="" />
       
-      <div>
-        <p className=" my-2 font-bold md:text-2xl">Top Categories</p>
+      <div className=" my-12">
+        <p className=" my-10 font-bold md:text-2xl lg:text-3xl">Order Our best food options</p>
         <Categories/>
       </div>
       

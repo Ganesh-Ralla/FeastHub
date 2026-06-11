@@ -1,5 +1,5 @@
 import React from 'react'
-import biryani from '../assets/Biryani.png'
+import biryani from '../assets/biryani-png.png'
 const Categories = () => {
     const categories = [
         { image: `${biryani}`, name: 'Biryani' },
@@ -15,9 +15,9 @@ const Categories = () => {
                 {
                     categories.map((category, id) => {
                         return (
-                            <div className=' flex flex-col items-center'>
-                                <img src={category.image} className=' h-20 rounded-xl' alt="" />
-                                <p>{category.name}</p>
+                            <div className=' flex flex-col items-center '>
+                                <img src={category.image} className=' h-32 rounded-full hover:cursor-pointer' alt="" />
+                                <p className=' font-semibold text-lg'>{category.name}</p>
                             </div>
                         )
                     })

@@ -19,9 +19,9 @@ const Auth = ({ setOpenModel }) => {
                   <form action="" className=' flex flex-col '>
                     <input type="text" placeholder='username' className=' p-2 border rounded-xl border-gray-200 mb-3' />
                     <input type="text" placeholder='password' className=' p-2 border rounded-xl border-gray-200 mb-3' />
-                    <button className='p-2 text-white font-bold rounded-xl bg-blue-500 mb-3'>Sign in</button>
+                    <button className='p-2 text-white font-bold rounded-xl bg-orange-500 mb-3'>Sign in</button>
                   </form>
-                  <p>New here ? <span className=' text-blue-500 my-3 hover:cursor-pointer' onClick={() => { setAuthMode('register') }}>Register</span></p>
+                  <p>New here ? <span className=' text-orange-500 my-3 hover:cursor-pointer' onClick={() => { setAuthMode('register') }}>Register</span></p>
                 </div>
               )
             }
@@ -35,9 +35,9 @@ const Auth = ({ setOpenModel }) => {
                     <input type="text" placeholder='email' className=' p-2 border rounded-xl border-gray-200 mb-3' />
                     <input type="text" placeholder='username' className=' p-2 border rounded-xl border-gray-200 mb-3' />
                     <input type="text" placeholder='password' className=' p-2 border rounded-xl border-gray-200 mb-3' />
-                    <button className='p-2 text-white font-bold rounded-xl bg-blue-500 mb-3'>Sign up</button>
+                    <button className='p-2 text-white font-bold rounded-xl bg-orange-500 mb-3'>Sign up</button>
                   </form>
-                  <p>Already have an account? <span className=' text-blue-500 my-3 hover:cursor-pointer' onClick={() => { setAuthMode('login') }}>Sign in</span></p>
+                  <p>Already have an account? <span className=' text-orange-500 my-3 hover:cursor-pointer' onClick={() => { setAuthMode('login') }}>Sign in</span></p>
                 </div>
               )
             }

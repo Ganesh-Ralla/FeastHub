@@ -1,11 +1,12 @@
 import { ArrowRight, CakeSlice, Clock, CookingPot, Hamburger, Mail, MapPin, Phone, Pizza } from 'lucide-react'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
     <>
       <div className=' p-4 md:px-8 lg:px-12 bg-orange-100'>
-        <div className=' grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 items-start gap-4'>
+        <div className=' my-12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 items-start gap-4'>
           <div>
             <p className=' text-3xl font-bold'><span>Feast</span><span className=' text-orange-500'>Hub</span></p>
             <p className='my-2 '>Delicious food delivered fast to your doorsteps. Enjoy your favourite meals</p>
@@ -17,8 +18,8 @@ const Footer = () => {
           <div>
             <p className=' text-orange-500 font-semibold text-lg'>Quick Links</p>
             <div>
-              <p className=' flex items-center gap-2'> <ArrowRight size={16} className=' text-orange-500' /><span>Home</span> </p>
-              <p className=' flex items-center gap-2'> <ArrowRight size={16} className=' text-orange-500' /><span>About</span> </p>
+              <p className=' flex items-center gap-2'> <ArrowRight size={16} className=' text-orange-500' /><Link to='/'>Home</Link> </p>
+              <p className=' flex items-center gap-2'> <ArrowRight size={16} className=' text-orange-500' /><Link to='/about'>About</Link> </p>
             </div>
           </div>
 
@@ -33,7 +34,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <p className=' text-orange-500 font-semibold text-lg'>Popular Items</p>
+            <p className=' text-orange-500 font-semibold text-lg'>Contact us</p>
             <div>
               <div>
                 <p className=' flex items-center gap-2'><MapPin size={18} className='text-orange-500'  /><span>123 Food Street,Hyderabad</span></p>

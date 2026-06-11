@@ -1,8 +1,8 @@
 import { Menu, Search, UserCircle } from 'lucide-react'
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useRef, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
-const Navbar = ({ openModel,setOpenModel,setModel}) => {
+const Navbar = ({ openModel,setOpenModel,setModel, openSearchBar, setOpenSearchBar, searchInput, setSearchInput, setSearchTaken }) => {
 
   const [menu, setMenu] = useState(false)
   const [opensearch, setOpenSearch] = useState(false)
@@ -17,6 +17,31 @@ const Navbar = ({ openModel,setOpenModel,setModel}) => {
     setMenu(false)
   }
 
+
+  const navigate = useNavigate()
+  const inputRef = useRef(null)
+
+  const handleSearch=(e)=>{
+    setSearchInput(e.target.value)
+  }
+
+  useEffect(()=>{
+        if(openSearchBar){
+            inputRef.current?.focus()
+        }
+    },[openSearchBar])
+
+    const handleKey = (e) => {
+        if (e.key === "Enter") {
+            setSearchTaken(true)
+            navigate('/menu')
+
+            setOpenSearchBar(false)
+        }
+    }
+
+    console.log("Search Input : ",searchInput);
+    
   return (
     <>
       <nav className=' fixed w-full z-10 top-0 '>
@@ -31,8 +56,9 @@ const Navbar = ({ openModel,setOpenModel,setModel}) => {
 
             <div className='hidden md:flex items-center justify-around gap-4'>
               <div className=' flex items-center border rounded-full p-2 px-4 border-gray-300'>
-                <input type="search" placeholder='search' className=' outline-0' />
-                <span><Search color='gray' /> </span>
+                <input type="text" placeholder='search' className=' outline-0'
+                value={searchInput} onChange={handleSearch} onKeyDown={handleKey} />
+                <span><Search color='gray'  /> </span>
               </div>
               <Link to='/about' >About</Link>
               <Link to='/cart' >Cart</Link>
@@ -54,7 +80,8 @@ const Navbar = ({ openModel,setOpenModel,setModel}) => {
           opensearch && (
             <div className=' bg-orange-100 p-4'>
               <div className=' flex items-center justify-between border rounded-full p-2 px-4 border-gray-300'>
-                <input type="search" placeholder='search' className=' outline-0' />
+                <input type="text" placeholder='search' className=' outline-0'
+                value={searchInput} ref={inputRef} onChange={handleSearch} onKeyDown={handleKey} />
                 <span><Search color='gray' /> </span>
               </div>
             </div>
