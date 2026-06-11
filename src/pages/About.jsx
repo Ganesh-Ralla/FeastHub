@@ -1,6 +1,6 @@
 import Auth from "../components/Auth";
-import TechStack from "../components/TechStack";
-import AboutUs from "../components/AboutUs";
+import TechStack from "../components/Techstack";
+import AboutUs from "../components/Aboutus";
 import Aboutintro from "../components/Aboutintro";
 import Overview from "../components/Overview";
 import { AnimatePresence } from "motion/react"
