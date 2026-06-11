@@ -6,25 +6,25 @@ import { easeInOut, motion } from 'motion/react'
 
 const Item = ({ setOpenModel }) => {
   const addToCart = () => {
-    toast.success("Added to cart..",{
-      position:'top-center',
-      autoClose:3000,
-      hideProgressBar:true
+    toast.success("Added to cart..", {
+      position: 'top-center',
+      autoClose: 3000,
+      hideProgressBar: true
     })
   }
   return (
     <>
       <div className=' flex justify-center items-center min-h-screen fixed w-full z-10 inset-0 bg-black/50'>
         <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, ease: easeInOut }} exit={{ y: 20, opacity: 0 }}
-          className=' w-xs md:w-lg lg:w-1/4 p-4 '>
+          className=' w-xs md:w-lg lg:w-1/2 p-4 lg:flex  '>
           <div className=' w-full relative '>
             <div className=' absolute right-4 top-4 p-1  bg-white rounded-full'>
               <X size={18} onClick={() => { setOpenModel(false) }} className=' hover:cursor-pointer' />
             </div>
-            <img src={biryani} alt="" className=' h-52 md:h-100 w-full object-cover rounded-t-xl' />
+            <img src={biryani} alt="" className=' h-52 md:h-100 w-full object-cover rounded-t-xl lg:rounded-t-none lg:rounded-l-xl' />
           </div>
 
-          <div className=' p-4 bg-white rounded-b-xl'>
+          <div className=' p-4 bg-white rounded-b-xl lg:rounded-b-none lg:rounded-r-xl lg:rounded-br-xl'>
             <p className=' font-bold text-orange-500'>Bestseller</p>
             <p className=' flex justify-between'>
               <span className=' text-2xl font-bold '>Chicken Biryani </span>
