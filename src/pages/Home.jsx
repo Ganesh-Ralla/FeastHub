@@ -6,6 +6,7 @@ import Items from "../components/Items"
 import { AnimatePresence } from "motion/react"
 import Item from "../components/Item"
 import Categories from "../components/Categories"
+import OfferSlider from "../components/OfferSlider"
 
 const Home = ({openModel,setOpenModel,model,setModel}) => {
   return (
@@ -18,10 +19,13 @@ const Home = ({openModel,setOpenModel,model,setModel}) => {
         <p className=" text-xs md:text-lg text-gray-500 md:my-4">Order food from your favourite <br className=" lg:hidden" /> restaurant near you</p>
       </div>
     </div>
+    <div className="p-4 md:px-8 lg:px-12">
+     <div className="my-6">
+       <OfferSlider />
+    </div>
 
     <div className="  p-4 md:px-8 lg:px-12">
       <img src={discount1} className=" rounded-xl lg:hidden" alt="" />
-      
       <div className=" my-12">
         <p className=" my-10 font-bold md:text-2xl lg:text-3xl">Order Our best food options</p>
         <Categories/>
@@ -40,6 +44,7 @@ const Home = ({openModel,setOpenModel,model,setModel}) => {
       <AnimatePresence>
         { openModel && model === 'item' && <Item setOpenModel={setOpenModel}/> }
       </AnimatePresence>
+    </div>
     </div>
     </>
   )
