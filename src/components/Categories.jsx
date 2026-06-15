@@ -11,13 +11,13 @@ const Categories = () => {
     ]
     return (
         <>
-            <div className=' flex items-center justify-between gap-2'>
+            <div className=' flex items-center justify-between gap-2 overflow-x-auto'>
                 {
                     categories.map((category, id) => {
                         return (
                             <div className=' flex flex-col items-center '>
-                                <img src={category.image} className=' h-32 rounded-full hover:cursor-pointer' alt="" />
-                                <p className=' font-semibold text-lg'>{category.name}</p>
+                                <img src={category.image} className=' h-auto md:h-40 w-full rounded-full hover:cursor-pointer object-contain ' alt="" />
+                                <p className=' font-semibold text-sm md:text-lg'>{category.name}</p>
                             </div>
                         )
                     })
