@@ -10,6 +10,8 @@ import { useState } from 'react'
 import Cart from './pages/Cart'
 import Menu from './pages/Menu'
 import ScrollToTop from './components/ScrollToTop'
+import AuthProvider from './context/AuthContext'
+import Profile from './pages/Profile'
 
 function App() {
   const [openModel, setOpenModel] = useState(false)
@@ -20,22 +22,25 @@ function App() {
   const [searchTaken, setSearchTaken] = useState(false)
   return (
     <>
-      <BrowserRouter>
-        <ScrollToTop />
-        <Navbar openModel={openModel} setOpenModel={setOpenModel} setModel={setModel}
-          openSearchBar={openSearchBar} setOpenSearchBar={setOpenSearchBar}
-          searchInput={searchInput} setSearchInput={setSearchInput}
-          searchTaken={searchTaken} setSearchTaken={setSearchTaken} />
+      <AuthProvider>
+        <BrowserRouter>
+          <ScrollToTop />
+          <Navbar openModel={openModel} setOpenModel={setOpenModel} setModel={setModel}
+            openSearchBar={openSearchBar} setOpenSearchBar={setOpenSearchBar}
+            searchInput={searchInput} setSearchInput={setSearchInput}
+            searchTaken={searchTaken} setSearchTaken={setSearchTaken} />
 
-        <Routes>
-          <Route path='/' element={<Home openModel={openModel} setOpenModel={setOpenModel} model={model} setModel={setModel} />} />
-          <Route path='/about' element={<About openModel={openModel} setOpenModel={setOpenModel} />} />
-          <Route path='/cart' element={<Cart openModel={openModel} setOpenModel={setOpenModel} />} />
-          <Route path='/menu' element={<Menu searchInput={searchInput} openModel={openModel} setOpenModel={setOpenModel} model={model} setModel={setModel} />} />
-        </Routes>
-        <Footer />
-        <ToastContainer />
-      </BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Home openModel={openModel} setOpenModel={setOpenModel} model={model} setModel={setModel} />} />
+            <Route path='/about' element={<About openModel={openModel} setOpenModel={setOpenModel} />} />
+            <Route path='/cart' element={<Cart openModel={openModel} setOpenModel={setOpenModel} />} />
+            <Route path='/menu' element={<Menu searchInput={searchInput} openModel={openModel} setOpenModel={setOpenModel} model={model} setModel={setModel} />} />
+            <Route path='/profile' element={<Profile/>} />
+          </Routes>
+          <Footer />
+          <ToastContainer />
+        </BrowserRouter>
+      </AuthProvider>
 
     </>
   )

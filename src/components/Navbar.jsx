@@ -1,18 +1,22 @@
 import { Menu, Search, UserCircle } from 'lucide-react'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../context/AuthContext'
+import { toast } from 'react-toastify'
 
-const Navbar = ({ openModel,setOpenModel,setModel, openSearchBar, setOpenSearchBar, searchInput, setSearchInput, setSearchTaken }) => {
+const Navbar = ({ openModel, setOpenModel, setModel, openSearchBar, setOpenSearchBar, searchInput, setSearchInput, setSearchTaken }) => {
 
   const [menu, setMenu] = useState(false)
   const [opensearch, setOpenSearch] = useState(false)
 
-  const openMenu=()=>{
+  const { isLoggedIn } = useContext(AuthContext)
+
+  const openMenu = () => {
     setMenu(!menu)
     setOpenSearch(false)
   }
 
-  const openSearchbar=()=>{
+  const openSearchbar = () => {
     setOpenSearch(!opensearch)
     setMenu(false)
   }
@@ -21,27 +25,40 @@ const Navbar = ({ openModel,setOpenModel,setModel, openSearchBar, setOpenSearchB
   const navigate = useNavigate()
   const inputRef = useRef(null)
 
-  const handleSearch=(e)=>{
+  const handleSearch = (e) => {
     setSearchInput(e.target.value)
   }
 
-  useEffect(()=>{
-        if(openSearchBar){
-            inputRef.current?.focus()
-        }
-    },[openSearchBar])
-
-    const handleKey = (e) => {
-        if (e.key === "Enter") {
-            setSearchTaken(true)
-            navigate('/menu')
-
-            setOpenSearchBar(false)
-        }
+  useEffect(() => {
+    if (openSearchBar) {
+      inputRef.current?.focus()
     }
+  }, [openSearchBar])
 
-    console.log("Search Input : ",searchInput);
-    
+  const handleKey = (e) => {
+    if (e.key === "Enter") {
+      setSearchTaken(true)
+      navigate('/menu')
+
+      setOpenSearchBar(false)
+    }
+  }
+
+  // console.log("Search Input : ",searchInput);
+
+  const openCart = () => {
+    if (!isLoggedIn) {
+      toast.warn('Login is required', {
+        position: "top-center",
+        autoClose: 3000,
+        closeOnClick:true,
+        pauseOnHover:false
+      });
+    } else {
+      navigate('/cart')
+    }
+  }
+
   return (
     <>
       <nav className=' fixed w-full z-10 top-0 '>
@@ -57,22 +74,27 @@ const Navbar = ({ openModel,setOpenModel,setModel, openSearchBar, setOpenSearchB
             <div className='hidden md:flex items-center justify-around gap-4'>
               <div className=' flex items-center border rounded-full p-2 px-4 border-gray-300'>
                 <input type="text" placeholder='search' className=' outline-0'
-                value={searchInput} onChange={handleSearch} onKeyDown={handleKey} />
-                <span><Search color='gray'  /> </span>
+                  value={searchInput} onChange={handleSearch} onKeyDown={handleKey} />
+                <span><Search color='gray' /> </span>
               </div>
               <Link to='/about' >About</Link>
-              <Link to='/cart' >Cart</Link>
-              <Link ><UserCircle onClick={() => { setOpenModel(true),setModel('user') }} /></Link>
+              <button onClick={openCart} className=' hover:cursor-pointer' >Cart</button>
+              {
+                isLoggedIn ? <Link to='/profile'> <UserCircle /> </Link> : <Link ><UserCircle onClick={() => { setOpenModel(true), setModel('user') }} /></Link>
+              }
+
             </div>
           </div>
 
         </div>
         {
           menu && (
-            <div className=' flex flex-col justify-around gap-2 p-4 bg-blue-200'>
+            <div className=' flex flex-col justify-around items-start gap-2 p-4 bg-blue-200'>
               <Link to='/about' >About</Link>
-              <Link to='/cart' >Cart</Link>
-              <Link><UserCircle onClick={() => { setOpenModel(true),setModel('user') }} /></Link>
+              <button onClick={openCart} className=' hover:cursor-pointer' >Cart</button>
+              {
+                isLoggedIn ? <Link to='/profile'> <UserCircle /> </Link> : <Link ><UserCircle onClick={() => { setOpenModel(true), setModel('user') }} /></Link>
+              }
             </div>
           )
         }
@@ -81,7 +103,7 @@ const Navbar = ({ openModel,setOpenModel,setModel, openSearchBar, setOpenSearchB
             <div className=' bg-orange-100 p-4'>
               <div className=' flex items-center justify-between border rounded-full p-2 px-4 border-gray-300'>
                 <input type="text" placeholder='search' className=' outline-0'
-                value={searchInput} ref={inputRef} onChange={handleSearch} onKeyDown={handleKey} />
+                  value={searchInput} ref={inputRef} onChange={handleSearch} onKeyDown={handleKey} />
                 <span><Search color='gray' /> </span>
               </div>
             </div>
