@@ -17,30 +17,29 @@ const offers = [
 const OfferSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
 
-     const nextSlide = () => {
+  const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % offers.length)
   }
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev - 1 + offers.length) % offers.length)
   }
 
-    useEffect(() => {  
-        const timer = setInterval(nextSlide, 4000)
-        return () => clearInterval(timer)
-    }, [])
-    
+  useEffect(() => {
+    const timer = setInterval(nextSlide, 4000)
+    return () => clearInterval(timer)
+  }, [])
+
   return (
-    <div className="relative w-full overflow-hidden rounded-xl">
-      <div
-        className="flex transition-transform duration-500 ease-in-out"
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-      >
+    <div className="relative w-full overflow-hidden   ">
+      <div className="flex transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+
         {offers.map((offer) => (
-          <div key={offer.id} className="min-w-full">
+          <div key={offer.id} className="min-w-full flex items-center ">
             <img
               src={offer.image}
               alt={offer.alt}
-              className="w-full h-auto rounded-xl"
+              className="w-full lg:h-125 lg:object-contain "
             />
           </div>
         ))}
@@ -62,9 +61,8 @@ const OfferSlider = () => {
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`h-2 rounded-full transition-all ${
-              currentIndex === index ? "w-6 bg-orange-500" : "w-2 bg-white"
-            }`}
+            className={`h-2 rounded-full transition-all ${currentIndex === index ? "w-6 bg-orange-500" : "w-2 bg-gray-300"
+              }`}
           />
         ))}
       </div>
