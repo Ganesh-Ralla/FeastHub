@@ -12,6 +12,7 @@ import Menu from './pages/Menu'
 import ScrollToTop from './components/ScrollToTop'
 import AuthProvider from './context/AuthContext'
 import Profile from './pages/Profile'
+import Searched from './pages/Searched'
 
 function App() {
   const [openModel, setOpenModel] = useState(false)
@@ -34,7 +35,8 @@ function App() {
             <Route path='/' element={<Home openModel={openModel} setOpenModel={setOpenModel} model={model} setModel={setModel} />} />
             <Route path='/about' element={<About openModel={openModel} setOpenModel={setOpenModel} />} />
             <Route path='/cart' element={<Cart openModel={openModel} setOpenModel={setOpenModel} />} />
-            <Route path='/menu' element={<Menu searchInput={searchInput} openModel={openModel} setOpenModel={setOpenModel} model={model} setModel={setModel} />} />
+            <Route path='/menu' element={<Menu openModel={openModel} setOpenModel={setOpenModel} model={model} setModel={setModel} />} />
+            <Route path='/search' element={<Searched searchInput={searchInput} openModel={openModel} setOpenModel={setOpenModel} model={model} setModel={setModel} />} />
             <Route path='/profile' element={<Profile/>} />
           </Routes>
           <Footer />

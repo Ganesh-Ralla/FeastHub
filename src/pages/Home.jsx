@@ -7,8 +7,14 @@ import { AnimatePresence } from "motion/react"
 import Item from "../components/Item"
 import Categories from "../components/Categories"
 import OfferSlider from "../components/OfferSlider"
+import { useState } from "react"
+import CategoriesData from "../components/CategoriesData"
 
 const Home = ({ openModel, setOpenModel, model, setModel }) => {
+
+  const [category,setCategory] = useState('starters')
+  const [selectedItem,setSelectedItem] = useState(null)
+
   return (
     <>
       <div className=" mt-12 lg:mt-0 relative">
@@ -20,9 +26,9 @@ const Home = ({ openModel, setOpenModel, model, setModel }) => {
         </div>
       </div>
 
-      <div className="my-6">
+      {/* <div className="my-6">
         <OfferSlider />
-      </div>
+      </div> */}
       <div className="p-4 md:px-8 lg:px-12">
 
 
@@ -30,12 +36,12 @@ const Home = ({ openModel, setOpenModel, model, setModel }) => {
           <img src={discount1} className=" rounded-xl lg:hidden" alt="" />
           <div className=" my-12">
             <p className=" my-10 font-bold md:text-2xl lg:text-3xl">Order Our best food options</p>
-            <Categories />
+            <Categories setCategory={setCategory} />
           </div>
 
           <div>
-            <p className=" my-2 font-bold md:text-2xl">Popular Items</p>
-            <Items setModel={setModel} setOpenModel={setOpenModel} />
+            <p className=" my-2 font-bold md:text-2xl">Categorised Food</p>
+            <CategoriesData setModel={setModel} setOpenModel={setOpenModel} setSelectedItem={setSelectedItem}  category={category} />
           </div>
 
 
@@ -44,7 +50,7 @@ const Home = ({ openModel, setOpenModel, model, setModel }) => {
           </AnimatePresence>
 
           <AnimatePresence>
-            {openModel && model === 'item' && <Item setOpenModel={setOpenModel} />}
+            {openModel && model === 'item' && <Item setOpenModel={setOpenModel} item={selectedItem} />}
           </AnimatePresence>
         </div>
       </div>

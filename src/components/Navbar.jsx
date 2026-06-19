@@ -38,7 +38,7 @@ const Navbar = ({ openModel, setOpenModel, setModel, openSearchBar, setOpenSearc
   const handleKey = (e) => {
     if (e.key === "Enter") {
       setSearchTaken(true)
-      navigate('/menu')
+      navigate('/search')
 
       setOpenSearchBar(false)
     }
@@ -77,6 +77,7 @@ const Navbar = ({ openModel, setOpenModel, setModel, openSearchBar, setOpenSearc
                   value={searchInput} onChange={handleSearch} onKeyDown={handleKey} />
                 <span><Search color='gray' /> </span>
               </div>
+              <Link to='/menu'>Menu</Link>
               <Link to='/about' >About</Link>
               <button onClick={openCart} className=' hover:cursor-pointer' >Cart</button>
               {
@@ -90,10 +91,11 @@ const Navbar = ({ openModel, setOpenModel, setModel, openSearchBar, setOpenSearc
         {
           menu && (
             <div className=' flex flex-col justify-around items-start gap-2 p-4 bg-blue-200'>
-              <Link to='/about' >About</Link>
+              <Link onClick={()=>{setMenu(false)}} to='/menu'>Menu</Link>
+              <Link onClick={()=>{setMenu(false)}} to='/about' >About</Link>
               <button onClick={openCart} className=' hover:cursor-pointer' >Cart</button>
               {
-                isLoggedIn ? <Link to='/profile'> <UserCircle /> </Link> : <Link ><UserCircle onClick={() => { setOpenModel(true), setModel('user') }} /></Link>
+                isLoggedIn ? <Link to='/profile' onClick={()=>{setMenu(false)}}> <UserCircle /> </Link> : <Link ><UserCircle onClick={() => { setOpenModel(true), setModel('user'),setMenu(false) }} /></Link>
               }
             </div>
           )

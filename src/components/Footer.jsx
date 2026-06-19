@@ -1,6 +1,10 @@
-import { ArrowRight, CakeSlice, Clock, CookingPot, Hamburger, Mail, MapPin, Phone, Pizza } from 'lucide-react'
+import { ArrowRight, CakeSlice, Clock, CookingPot, Hamburger, Mail, MapPin, Phone, Pizza, Soup } from 'lucide-react'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import instagram from '../assets/instagram.png'
+import facebook from '../assets/facebook.png'
+import twitter from '../assets/twitter.png'
+import youtube from '../assets/youtube.png'
 
 const Footer = () => {
   return (
@@ -11,7 +15,12 @@ const Footer = () => {
             <p className=' text-3xl font-bold'><span>Feast</span><span className=' text-orange-500'>Hub</span></p>
             <p className='my-2 '>Delicious food delivered fast to your doorsteps. Enjoy your favourite meals</p>
             <div>
-              Social Media icons
+              <div className=' flex items-center gap-4'>
+                <img src={instagram} alt="" className=' h-6' />
+                <img src={facebook} alt="" className=' h-6'/>
+                <img src={youtube} alt="" className=' h-6'/>
+                <img src={twitter} alt="" className=' h-6'/>
+              </div>
             </div>
           </div>
 
@@ -19,6 +28,7 @@ const Footer = () => {
             <p className=' text-orange-500 font-semibold text-lg'>Quick Links</p>
             <div>
               <p className=' flex items-center gap-2'> <ArrowRight size={16} className=' text-orange-500' /><Link to='/'>Home</Link> </p>
+              <p className=' flex items-center gap-2'> <ArrowRight size={16} className=' text-orange-500' /><Link to='/menu'>Menu</Link> </p>
               <p className=' flex items-center gap-2'> <ArrowRight size={16} className=' text-orange-500' /><Link to='/about'>About</Link> </p>
             </div>
           </div>
@@ -28,7 +38,7 @@ const Footer = () => {
             <div>
               <p className=' flex items-center gap-2'> <CookingPot size={18} className='text-orange-500' /><span>Biryani</span> </p>
               <p className=' flex items-center gap-2'> <Pizza size={18} className='text-orange-500' /><span>Pizza</span> </p>
-              <p className=' flex items-center gap-2'> <Hamburger size={18} className='text-orange-500' /><span>Burger</span> </p>
+              <p className=' flex items-center gap-2'> <Soup size={18} className='text-orange-500' /><span>Soups</span> </p>
               <p className=' flex items-center gap-2'> <CakeSlice size={18} className='text-orange-500' /><span>Dessert</span> </p>
             </div>
           </div>
