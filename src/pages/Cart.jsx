@@ -47,6 +47,18 @@ const Cart = ({ openModel, setOpenModel }) => {
         }
     }
 
+    const remove_item=async(id)=>{
+        try{
+            const response = await api.delete(`cart/item/delete/${id}`, { headers: { Authorization: `Bearer ${accessToken}`}})
+            console.log(response.data);
+            get_cart_items()
+            
+        }catch(error){
+            console.error(error.response.data);
+            
+        }
+    }
+
     const total_items = items.reduce((total, item) => total + item.quantity, 0)
     console.log(total_items);
     const total_price = items.reduce((total, item) => total + Number(item.q_price), 0)
@@ -132,17 +144,17 @@ const Cart = ({ openModel, setOpenModel }) => {
 
                 <div className='mt-4 flex flex-col lg:flex-row gap-4 min-h-[80vh]'>
 
-                    
+
                     <div className='border border-gray-200 rounded-xl p-2 w-full lg:w-2/3'>
                         <p className='border-b border-gray-200 text-xl md:text-2xl font-bold pb-2'>Order Items</p>
 
                         <div className='p-2'>
-                            {items?.map((item, id) => (
-                                <div key={id} className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-gray-100 py-4'>
+                            {items?.map((item) => (
+                                <div key={item.id} className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-gray-100 py-4'>
 
-                                    
+
                                     <div className='flex gap-3 items-center'>
-                                        <img src={item?.food_details?.image} className='h-16 w-16 sm:h-20 sm:w-20 rounded-xl object-cover'alt='food'/>
+                                        <img src={item?.food_details?.image} className='h-16 w-16 sm:h-20 sm:w-20 rounded-xl object-cover' alt='food' />
 
                                         <div>
                                             <p className='font-medium'>{item?.food_details?.name}</p>
@@ -152,14 +164,14 @@ const Cart = ({ openModel, setOpenModel }) => {
 
                                     <div className='flex flex-wrap items-center justify-between sm:justify-end gap-4'>
                                         <div className='flex gap-2 items-center border border-gray-300 rounded-xl p-2'>
-                                            <button onClick={() =>update_quantity(item.id,item.quantity - 1)} className='px-3'>-</button>
+                                            <button onClick={() => { if (item.quantity > 1) {update_quantity(item.id, item.quantity - 1)}}} className='px-3 '>-</button>
                                             <p className='font-bold min-w-5 text-center'>{item.quantity}</p>
-                                            <button onClick={() =>update_quantity(item.id,item.quantity + 1)} className='px-3'>+</button>
+                                            <button onClick={() => update_quantity(item.id, item.quantity + 1)} className='px-3'>+</button>
                                         </div>
 
                                         <div className='flex items-center gap-2'>
                                             <p className='font-bold text-lg'>₹{item.q_price}</p>
-                                            <Trash2 size={20} className='text-gray-500 cursor-pointer' />
+                                            <Trash2 onClick={()=>{remove_item(item.id)}} size={20} className='text-gray-500 cursor-pointer' />
                                         </div>
                                     </div>
                                 </div>
