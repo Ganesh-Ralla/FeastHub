@@ -26,14 +26,6 @@ const Aboutus = () => {
             <li>
               <span className="font-semibold">Aarthi Mynampati</span> — Full Stack Developer
             </li>
-
-            <li>
-              <span className="font-semibold">Akshaya</span> — Full Stack Developer
-            </li>
-
-            <li>
-              <span className="font-semibold">Pranusha</span> — Full Stack Developer
-            </li>
           </ul>
         </div>
 
