@@ -40,7 +40,9 @@ const Navbar = ({ openModel, setOpenModel, setModel, openSearchBar, setOpenSearc
       setSearchTaken(true)
       navigate('/search')
 
-      setOpenSearchBar(false)
+      setOpenSearchBar(false) // desktop
+      setOpenSearch(false)    // mobile
+      setMenu(false)
     }
   }
 
@@ -51,8 +53,8 @@ const Navbar = ({ openModel, setOpenModel, setModel, openSearchBar, setOpenSearc
       toast.warn('Login is required', {
         position: "top-center",
         autoClose: 3000,
-        closeOnClick:true,
-        pauseOnHover:false
+        closeOnClick: true,
+        pauseOnHover: false
       });
     } else {
       navigate('/cart')
@@ -91,11 +93,11 @@ const Navbar = ({ openModel, setOpenModel, setModel, openSearchBar, setOpenSearc
         {
           menu && (
             <div className=' flex flex-col justify-around items-start gap-2 p-4 bg-blue-200'>
-              <Link onClick={()=>{setMenu(false)}} to='/menu'>Menu</Link>
-              <Link onClick={()=>{setMenu(false)}} to='/about' >About</Link>
+              <Link onClick={() => { setMenu(false) }} to='/menu'>Menu</Link>
+              <Link onClick={() => { setMenu(false) }} to='/about' >About</Link>
               <button onClick={openCart} className=' hover:cursor-pointer' >Cart</button>
               {
-                isLoggedIn ? <Link to='/profile' onClick={()=>{setMenu(false)}}> <UserCircle /> </Link> : <Link ><UserCircle onClick={() => { setOpenModel(true), setModel('user'),setMenu(false) }} /></Link>
+                isLoggedIn ? <Link to='/profile' onClick={() => { setMenu(false) }}> <UserCircle /> </Link> : <Link ><UserCircle onClick={() => { setOpenModel(true), setModel('user'), setMenu(false) }} /></Link>
               }
             </div>
           )
