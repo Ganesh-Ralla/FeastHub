@@ -33,9 +33,9 @@ const Navbar = ({
 
   useEffect(() => {
     if (openSearchBar) {
-      setTimeout(() => {
+      requestAnimationFrame(() => {
         inputRef.current?.focus();
-      }, 100);
+      });
     }
   }, [openSearchBar]);
 
@@ -43,29 +43,45 @@ const Navbar = ({
     setSearchInput(e.target.value);
   };
 
-  const performSearch = () => {
-    if (!searchInput.trim()) return;
+  // const performSearch = () => {
+  //   if (!searchInput.trim()) return;
 
+  //   setSearchTaken(true);
+
+  //   navigate("/search");
+
+  //   setOpenSearchBar(false);
+  //   setMenu(false);
+  // };
+
+ const performSearch = () => {
+    const query = searchInput.trim();
+
+    if (!query) return;
+
+    inputRef.current?.blur();
+
+    setSearchInput(query);
     setSearchTaken(true);
-
-    navigate("/search");
 
     setOpenSearchBar(false);
     setMenu(false);
-  };
 
-  const handleKey = (e) => {
-    console.log("Key Pressed :", e.key);
+    navigate("/search");
+};
 
-    if (
-      e.key === "Enter" ||
-      e.key === "Search" ||
-      e.key === "Go"
-    ) {
-      e.preventDefault();
-      performSearch();
-    }
-  };
+  // const handleKey = (e) => {
+  //   console.log("Key Pressed :", e.key);
+
+  //   if (
+  //     e.key === "Enter" ||
+  //     e.key === "Search" ||
+  //     e.key === "Go"
+  //   ) {
+  //     e.preventDefault();
+  //     performSearch();
+  //   }
+  // };
 
   const openCart = () => {
     if (!isLoggedIn) {
@@ -109,7 +125,7 @@ const Navbar = ({
             {/* Desktop */}
             <div className="hidden items-center gap-4 md:flex">
 
-              <div className="flex items-center rounded-full border border-gray-300 px-4 py-2">
+              {/* <div className="flex items-center rounded-full border border-gray-300 px-4 py-2">
                 <input
                   ref={inputRef}
                   type="text"
@@ -125,7 +141,31 @@ const Navbar = ({
                   className="cursor-pointer"
                   onClick={performSearch}
                 />
-              </div>
+              </div> */}
+
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  performSearch();
+                }}
+                className="flex items-center rounded-full border border-gray-300 px-4 py-2"
+              >
+                <input
+                  ref={inputRef}
+                  type="text"
+                  placeholder="Search"
+                  className="outline-none w-full"
+                  value={searchInput}
+                  onChange={handleSearch}
+                />
+
+                <button
+                  type="submit"
+                  className="cursor-pointer flex items-center"
+                >
+                  <Search color="gray" />
+                </button>
+              </form>
 
               <Link to="/menu">Menu</Link>
 
@@ -202,9 +242,35 @@ const Navbar = ({
 
         {/* Mobile Search */}
         {openSearchBar && (
-          <div className="bg-orange-100 p-4">
-            <div className="flex items-center rounded-full border border-gray-300 bg-white px-4 py-2">
+          // <div className="bg-orange-100 p-4">
+          //   <div className="flex items-center rounded-full border border-gray-300 bg-white px-4 py-2">
 
+          //     <input
+          //       ref={inputRef}
+          //       type="text"
+          //       placeholder="Search"
+          //       className="w-full outline-none"
+          //       value={searchInput}
+          //       onChange={handleSearch}
+          //       onKeyDown={handleKey}
+          //     />
+
+          //     <Search
+          //       color="gray"
+          //       className="cursor-pointer"
+          //       onClick={performSearch}
+          //     />
+          //   </div>
+          // </div>
+
+          <div className="bg-orange-100 p-4">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                performSearch();
+              }}
+              className="flex items-center rounded-full border border-gray-300 bg-white px-4 py-2"
+            >
               <input
                 ref={inputRef}
                 type="text"
@@ -212,15 +278,15 @@ const Navbar = ({
                 className="w-full outline-none"
                 value={searchInput}
                 onChange={handleSearch}
-                onKeyDown={handleKey}
               />
 
-              <Search
-                color="gray"
-                className="cursor-pointer"
-                onClick={performSearch}
-              />
-            </div>
+              <button
+                type="submit"
+                className="cursor-pointer flex items-center"
+              >
+                <Search color="gray" />
+              </button>
+            </form>
           </div>
         )}
       </nav>
