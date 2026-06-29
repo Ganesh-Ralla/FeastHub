@@ -1,124 +1,231 @@
-import { Menu, Search, UserCircle } from 'lucide-react'
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { AuthContext } from '../context/AuthContext'
-import { toast } from 'react-toastify'
+import { Menu, Search, UserCircle } from "lucide-react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import { toast } from "react-toastify";
 
-const Navbar = ({ openModel, setOpenModel, setModel, openSearchBar, setOpenSearchBar, searchInput, setSearchInput, setSearchTaken }) => {
+const Navbar = ({
+  openModel,
+  setOpenModel,
+  setModel,
+  openSearchBar,
+  setOpenSearchBar,
+  searchInput,
+  setSearchInput,
+  setSearchTaken,
+}) => {
+  const [menu, setMenu] = useState(false);
 
-  const [menu, setMenu] = useState(false)
-  const [opensearch, setOpenSearch] = useState(false)
+  const { isLoggedIn } = useContext(AuthContext);
 
-  const { isLoggedIn } = useContext(AuthContext)
+  const navigate = useNavigate();
+  const inputRef = useRef(null);
 
   const openMenu = () => {
-    setMenu(!menu)
-    setOpenSearch(false)
-  }
+    setMenu((prev) => !prev);
+    setOpenSearchBar(false);
+  };
 
-  const openSearchbar = () => {
-    setOpenSearch(!opensearch)
-    setMenu(false)
-  }
-
-
-  const navigate = useNavigate()
-  const inputRef = useRef(null)
-
-  const handleSearch = (e) => {
-    setSearchInput(e.target.value)
-  }
+  const openSearch = () => {
+    setOpenSearchBar((prev) => !prev);
+    setMenu(false);
+  };
 
   useEffect(() => {
     if (openSearchBar) {
-      inputRef.current?.focus()
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
     }
-  }, [openSearchBar])
+  }, [openSearchBar]);
+
+  const handleSearch = (e) => {
+    setSearchInput(e.target.value);
+  };
+
+  const performSearch = () => {
+    if (!searchInput.trim()) return;
+
+    setSearchTaken(true);
+
+    navigate("/search");
+
+    setOpenSearchBar(false);
+    setMenu(false);
+  };
 
   const handleKey = (e) => {
-    if (e.key === "Enter") {
-      setSearchTaken(true)
-      navigate('/search')
+    console.log("Key Pressed :", e.key);
 
-      setOpenSearchBar(false) // desktop
-      setOpenSearch(false)    // mobile
-      setMenu(false)
+    if (
+      e.key === "Enter" ||
+      e.key === "Search" ||
+      e.key === "Go"
+    ) {
+      e.preventDefault();
+      performSearch();
     }
-  }
-
-  // console.log("Search Input : ",searchInput);
+  };
 
   const openCart = () => {
     if (!isLoggedIn) {
-      toast.warn('Login is required', {
+      toast.warn("Login is required", {
         position: "top-center",
         autoClose: 3000,
         closeOnClick: true,
-        pauseOnHover: false
+        pauseOnHover: false,
       });
     } else {
-      navigate('/cart')
+      navigate("/cart");
     }
-  }
+  };
 
   return (
     <>
-      <nav className=' fixed w-full z-10 top-0 '>
-        <div className=' p-4 md:px-8 lg:px-12 bg-white'>
-          <div className=' flex items-center justify-between '>
-            <Link to='/' className=' font-bold text-2xl md:text-3xl'>  <span>Feast</span><span className=' text-orange-500'>Hub</span></Link>
+      <nav className="fixed top-0 z-10 w-full">
+        <div className="bg-white p-4 md:px-8 lg:px-12">
+          <div className="flex items-center justify-between">
 
-            <div className='flex  items-center gap-2 md:hidden'>
-              <Search onClick={openSearchbar} />
-              <Menu onClick={openMenu} />
+            <Link
+              to="/"
+              className="text-2xl font-bold md:text-3xl"
+            >
+              <span>Feast</span>
+              <span className="text-orange-500">Hub</span>
+            </Link>
+
+            {/* Mobile */}
+            <div className="flex items-center gap-2 md:hidden">
+              <Search
+                className="cursor-pointer"
+                onClick={openSearch}
+              />
+              <Menu
+                className="cursor-pointer"
+                onClick={openMenu}
+              />
             </div>
 
-            <div className='hidden md:flex items-center justify-around gap-4'>
-              <div className=' flex items-center border rounded-full p-2 px-4 border-gray-300'>
-                <input type="text" placeholder='search' className=' outline-0'
-                  value={searchInput} onChange={handleSearch} onKeyDown={handleKey} />
-                <span><Search color='gray' /> </span>
-              </div>
-              <Link to='/menu'>Menu</Link>
-              <Link to='/about' >About</Link>
-              <button onClick={openCart} className=' hover:cursor-pointer' >Cart</button>
-              {
-                isLoggedIn ? <Link to='/profile'> <UserCircle /> </Link> : <Link ><UserCircle onClick={() => { setOpenModel(true), setModel('user') }} /></Link>
-              }
+            {/* Desktop */}
+            <div className="hidden items-center gap-4 md:flex">
 
+              <div className="flex items-center rounded-full border border-gray-300 px-4 py-2">
+                <input
+                  ref={inputRef}
+                  type="text"
+                  placeholder="Search"
+                  className="outline-none"
+                  value={searchInput}
+                  onChange={handleSearch}
+                  onKeyDown={handleKey}
+                />
+
+                <Search
+                  color="gray"
+                  className="cursor-pointer"
+                  onClick={performSearch}
+                />
+              </div>
+
+              <Link to="/menu">Menu</Link>
+
+              <Link to="/about">About</Link>
+
+              <button
+                onClick={openCart}
+                className="cursor-pointer"
+              >
+                Cart
+              </button>
+
+              {isLoggedIn ? (
+                <Link to="/profile">
+                  <UserCircle />
+                </Link>
+              ) : (
+                <UserCircle
+                  className="cursor-pointer"
+                  onClick={() => {
+                    setOpenModel(true);
+                    setModel("user");
+                  }}
+                />
+              )}
             </div>
           </div>
-
         </div>
-        {
-          menu && (
-            <div className=' flex flex-col justify-around items-start gap-2 p-4 bg-blue-200'>
-              <Link onClick={() => { setMenu(false) }} to='/menu'>Menu</Link>
-              <Link onClick={() => { setMenu(false) }} to='/about' >About</Link>
-              <button onClick={openCart} className=' hover:cursor-pointer' >Cart</button>
-              {
-                isLoggedIn ? <Link to='/profile' onClick={() => { setMenu(false) }}> <UserCircle /> </Link> : <Link ><UserCircle onClick={() => { setOpenModel(true), setModel('user'), setMenu(false) }} /></Link>
-              }
-            </div>
-          )
-        }
-        {
-          opensearch && (
-            <div className=' bg-orange-100 p-4'>
-              <div className=' flex items-center justify-between border rounded-full p-2 px-4 border-gray-300'>
-                <input type="text" placeholder='search' className=' outline-0'
-                  value={searchInput} ref={inputRef} onChange={handleSearch} onKeyDown={handleKey} />
-                <span><Search color='gray' /> </span>
-              </div>
-            </div>
 
-          )
-        }
+        {/* Mobile Menu */}
+        {menu && (
+          <div className="flex flex-col gap-3 bg-blue-200 p-4">
 
+            <Link
+              to="/menu"
+              onClick={() => setMenu(false)}
+            >
+              Menu
+            </Link>
+
+            <Link
+              to="/about"
+              onClick={() => setMenu(false)}
+            >
+              About
+            </Link>
+
+            <button
+              onClick={openCart}
+              className="cursor-pointer text-left"
+            >
+              Cart
+            </button>
+
+            {isLoggedIn ? (
+              <Link
+                to="/profile"
+                onClick={() => setMenu(false)}
+              >
+                <UserCircle />
+              </Link>
+            ) : (
+              <UserCircle
+                className="cursor-pointer"
+                onClick={() => {
+                  setOpenModel(true);
+                  setModel("user");
+                  setMenu(false);
+                }}
+              />
+            )}
+          </div>
+        )}
+
+        {/* Mobile Search */}
+        {openSearchBar && (
+          <div className="bg-orange-100 p-4">
+            <div className="flex items-center rounded-full border border-gray-300 bg-white px-4 py-2">
+
+              <input
+                ref={inputRef}
+                type="text"
+                placeholder="Search"
+                className="w-full outline-none"
+                value={searchInput}
+                onChange={handleSearch}
+                onKeyDown={handleKey}
+              />
+
+              <Search
+                color="gray"
+                className="cursor-pointer"
+                onClick={performSearch}
+              />
+            </div>
+          </div>
+        )}
       </nav>
-
     </>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
